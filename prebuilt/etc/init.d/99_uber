@@ -28,9 +28,9 @@ echo "fifo" > /sys/block/mmcblk0/queue/scheduler
 
 # Governor
 echo "1" > /sys/devices/system/cpu/cpu0/online;
-echo "hyper" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor;
+echo "InteractiveX" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor;
 echo "1" > /sys/devices/system/cpu/cpu1/online;
-echo "hyper" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor;
+echo "InteractiveX" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor;
 
 # Set Max CPU
 echo "1200000" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
