@@ -36,6 +36,19 @@ echo "hyper" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor;
 echo "1200000" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 echo "1200000" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
 
+# Set Min CPU
+echo "300000" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+echo "300000" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+
+#Change Readahead Values
+LOOP=`ls -d /sys/block/loop*`;
+RAM=`ls -d /sys/block/ram*`;
+MMC=`ls -d /sys/block/mmc*`;
+for j in $LOOP $RAM $MMC
+do
+echo "0" > $j/queue/rotational;
+echo "128" > $j/queue/read_ahead_kb;
+done
 
 #fstrim to speed up file systems
 fstrim -v /cache;
