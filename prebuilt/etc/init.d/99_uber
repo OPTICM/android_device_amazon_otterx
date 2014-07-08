@@ -27,10 +27,10 @@ echo "1" > /proc/sys/vm/laptop_mode
 #    1  free pagecache
 #    2  free dentries, inodes
 #    3  free pagecache, dentries, inodes
-echo "3" > /proc/sys/vm/drop_caches
+echo "0" > /proc/sys/vm/drop_caches
 
 # IO Acceptable values are bfq, cfq, deadline, fifo, fiops, noop, row, sio, vr, zen
-echo "bfq" > /sys/block/mmcblk0/queue/scheduler
+echo "fifo" > /sys/block/mmcblk0/queue/scheduler
 
 # Governor
 echo "1" > /sys/devices/system/cpu/cpu0/online;
