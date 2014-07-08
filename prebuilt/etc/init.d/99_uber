@@ -32,3 +32,9 @@ echo "3" > /proc/sys/vm/drop_caches
 # IO Acceptable values are bfq, cfq, deadline, fifo, fiops, noop, row, sio, vr, zen
 echo "bfq" > /sys/block/mmcblk0/queue/scheduler
 
+# Governor
+echo "1" > /sys/devices/system/cpu/cpu0/online;
+echo "hyper" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor;
+echo "1" > /sys/devices/system/cpu/cpu1/online;
+echo "hyper" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor;
+
