@@ -1,0 +1,34 @@
+#!/system/bin/sh
+
+#Enable Frandom on Boot
+insmod /system/lib/modules/frandom.ko
+chmod 644 /dev/frandom
+chmod 644 /dev/erandom
+mv /dev/random /dev/random.ori
+mv /dev/urandom /dev/urandom.ori
+ln /dev/frandom /dev/random
+chmod 644 /dev/random
+ln /dev/erandom /dev/urandom
+chmod 644 /dev/urandom
+
+#DIRTY RATIOS
+#dirty_background_ratio default is 10 (background meaning screen is off)
+echo "20" > /proc/sys/vm/dirty_background_ratio
+#dirty_ratio default is 20. 
+echo "40" > /proc/sys/vm/dirty_ratio
+
+#FS DELAY WRITEBACKS MODE
+# This command delays auto fs writebacks  or file system bits cached in RAM while Screen is ON. Enable this feature for better performance.  Note this adds a slight risk of possible data loss if you phone crashes while screen is on.
+echo "1" > /proc/sys/vm/laptop_mode
+
+#DROP CACHES
+#Dropping caches will force rebuild of file system cache based on actual app usage rather than boot/startup processes. Use value of 3 for best file system read/write performance or you can try something in between. The drop_caches command valid values are:
+#    0  default
+#    1  free pagecache
+#    2  free dentries, inodes
+#    3  free pagecache, dentries, inodes
+echo "3" > /proc/sys/vm/drop_caches
+
+# IO Acceptable values are bfq, cfq, deadline, fifo, fiops, noop, row, sio, vr, zen
+echo "bfq" > /sys/block/mmcblk0/queue/scheduler
+
