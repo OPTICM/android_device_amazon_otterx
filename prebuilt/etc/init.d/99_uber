@@ -24,7 +24,7 @@ echo "1" > /proc/sys/vm/laptop_mode
 echo "0" > /proc/sys/vm/drop_caches
 
 # IO Acceptable values are bfq, cfq, deadline, fifo, fiops, noop, row, sio, vr, zen
-echo "fifo" > /sys/block/mmcblk0/queue/scheduler
+echo "tripndroid" > /sys/block/mmcblk0/queue/scheduler
 
 # Governor
 echo "1" > /sys/devices/system/cpu/cpu0/online;
