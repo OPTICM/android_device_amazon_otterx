@@ -45,26 +45,25 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/prebuilt/etc/init.d/99_uber:/system/etc/init.d/99_uber \
     $(DEVICE_FOLDER)/prebuilt/etc/firmware/ducati-m3.512MB.bin:/system/etc/firmware/ducati-m3.512MB.bin
 
-# Recovery
-PRODUCT_COPY_FILES += \
-    $(DEVICE_FOLDER)/twrp.fstab:recovery/root/etc/twrp.fstab
-
 # Misc
 PRODUCT_PACKAGES += \
-    sdcard \
-    charger_res_images \
-    setup_fs
+    charger_res_images
 
-# F2FS
-PRODUCT_PACKAGES += \
-    mkfs.f2fs \
-    fsck.f2fs \
-    fibmap.f2fs
+# Recovery USB
+PRODUCT_PROPERTY_OVERRIDES += \
+    usb.vendor=1949 \
+    usb.product.adb=0006 \
+    usb.product.mtpadb=0006
 
 # Mark as low ram device
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.low_ram=true
 
-# Enable KSM by default
+# Dalvik settings
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ksm.default=1
+    dalvik.vm.heapstartsize=5m \
+    dalvik.vm.heapgrowthlimit=48m \
+    dalvik.vm.heapsize=256m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=512k \
+    dalvik.vm.heapmaxfree=2m
